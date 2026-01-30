@@ -1,65 +1,152 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto py-12">
+        <div className="space-y-8">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-semibold text-foreground">
+              LIMS - Laboratory Information Management System
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Tailwind CSS Configuration Test Page
+            </p>
+            <div className="flex justify-center gap-4 pt-4">
+              <Link 
+                href="/login"
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-md font-medium hover:opacity-90 transition-opacity"
+              >
+                Login
+              </Link>
+              <Link 
+                href="/signup"
+                className="border border-border bg-background text-foreground px-6 py-2 rounded-md font-medium hover:bg-accent transition-colors"
+              >
+                Sign Up
+              </Link>
+            </div>
+          </div>
+
+          {/* Color Palette Test */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-semibold text-foreground">Color Palette</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Primary */}
+              <div className="bg-primary text-primary-foreground p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Primary</h3>
+                <p className="text-xs">Blue - Main brand color</p>
+              </div>
+
+              {/* Secondary */}
+              <div className="bg-secondary text-secondary-foreground p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Secondary</h3>
+                <p className="text-xs">Light gray background</p>
+              </div>
+
+              {/* Accent */}
+              <div className="bg-accent text-accent-foreground p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Accent</h3>
+                <p className="text-xs">Accent color</p>
+              </div>
+
+              {/* Success */}
+              <div className="bg-success text-white p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Success</h3>
+                <p className="text-xs">Green - Success states</p>
+              </div>
+
+              {/* Error */}
+              <div className="bg-error text-white p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Error</h3>
+                <p className="text-xs">Red - Error states</p>
+              </div>
+
+              {/* Warning */}
+              <div className="bg-warning text-white p-6 rounded-lg">
+                <h3 className="font-medium text-sm mb-2">Warning</h3>
+                <p className="text-xs">Orange - Warning states</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Typography Test */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-foreground">Typography</h2>
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Font Family: Inter (from Google Fonts)</p>
+              <p className="text-base font-normal">Body text - font-normal</p>
+              <p className="text-lg font-medium">Label text - font-medium</p>
+              <p className="text-xl font-semibold">Heading text - font-semibold</p>
+            </div>
+          </div>
+
+          {/* Responsive Breakpoints Test */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-foreground">Responsive Breakpoints</h2>
+            <div className="bg-card border border-border p-6 rounded-lg">
+              <p className="text-sm text-muted-foreground mb-2">Current breakpoint:</p>
+              <p className="text-base">
+                <span className="inline sm:hidden">Mobile (&lt; 640px)</span>
+                <span className="hidden sm:inline md:hidden">Tablet (640px - 1024px)</span>
+                <span className="hidden md:inline">Desktop (&gt; 1024px)</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Card Component Test */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-foreground">Card Components</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-card border border-border p-6 rounded-lg space-y-2">
+                <h3 className="font-semibold text-card-foreground">Card Title</h3>
+                <p className="text-sm text-muted-foreground">
+                  This is a card component with proper spacing and border.
+                </p>
+              </div>
+              <div className="bg-muted p-6 rounded-lg space-y-2">
+                <h3 className="font-semibold text-foreground">Muted Card</h3>
+                <p className="text-sm text-muted-foreground">
+                  This card uses the muted background color.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Button Test */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-foreground">Buttons</h2>
+            <div className="flex flex-wrap gap-4">
+              <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium hover:opacity-90 transition-opacity">
+                Primary Button
+              </button>
+              <button className="bg-secondary text-secondary-foreground px-4 py-2 rounded-md font-medium hover:bg-secondary/80 transition-colors">
+                Secondary Button
+              </button>
+              <button className="border border-border bg-background text-foreground px-4 py-2 rounded-md font-medium hover:bg-accent transition-colors">
+                Outline Button
+              </button>
+            </div>
+          </div>
+
+          {/* Container Test */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-foreground">Container</h2>
+            <div className="bg-muted p-4 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                This page uses the container class with max-width of 80rem (max-w-7xl) and responsive padding:
+              </p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground mt-2 space-y-1">
+                <li>Mobile: 1rem padding</li>
+                <li>Tablet (≥640px): 1.5rem padding</li>
+                <li>Desktop (≥1024px): 2rem padding</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
