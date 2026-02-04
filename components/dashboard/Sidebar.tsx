@@ -41,7 +41,8 @@ import {
   FileText, 
   Settings, 
   X,
-  User as UserIcon
+  User as UserIcon,
+  ClipboardList
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { LogoutButton } from '@/components/auth/LogoutButton'
@@ -67,7 +68,8 @@ interface NavItem {
 
 const navigation: NavItem[] = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
-  { name: 'Patients', href: '/dashboard/patients', icon: Users },
+  // { name: 'Patients', href: '/dashboard/patients', icon: Users },
+  { name: 'Patients', href: '/patient-route', icon: Users },
   { name: 'Reports', href: '/dashboard/reports', icon: FileText },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ]

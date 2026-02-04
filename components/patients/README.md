@@ -94,6 +94,101 @@ The PatientRegistrationModal is integrated with the dashboard layout and opens w
 
 See `app/(dashboard)/layout.tsx` for the integration implementation.
 
+### TestSelectionDropdown
+
+A multi-select dropdown component for assigning lab tests to patients.
+
+**Features:**
+- Multi-select functionality with checkboxes
+- Three test options: CBC (Complete Blood Count), BG (Blood Glucose), VDRL (Venereal Disease Research Laboratory)
+- Shows selected count when closed (e.g., "2 tests selected")
+- Displays test descriptions for clarity
+- Consistent styling with existing components
+- Accessible with proper ARIA labels
+
+**Props:**
+- `patientId: string` - Patient ID for tracking which patient's tests are being selected
+- `selectedTests: Set<TestType>` - Set of currently selected test types
+- `onChange: (tests: Set<TestType>) => void` - Callback when test selection changes
+
+**Usage:**
+```tsx
+import { TestSelectionDropdown } from '@/components/patients/TestSelectionDropdown'
+import { useState } from 'react'
+import { TestType } from '@/types'
+
+function MyComponent() {
+  const [selectedTests, setSelectedTests] = useState<Set<TestType>>(new Set())
+  
+  return (
+    <TestSelectionDropdown
+      patientId="patient-123"
+      selectedTests={selectedTests}
+      onChange={setSelectedTests}
+    />
+  )
+}
+```
+
+### PatientAssignmentTable
+
+A table component for displaying patients with selection checkboxes and test assignment dropdowns.
+
+**Features:**
+- Checkbox column for patient selection
+- Patient information columns (Name, Mobile, Sex, Age, Referred By)
+- Test selection dropdown column for assigning tests
+- Highlight selected rows with blue background
+- Mobile-responsive card view fallback
+- Consistent styling with existing dashboard components
+- Accessible with proper ARIA labels
+
+**Props:**
+- `patients: Patient[]` - Array of patients to display
+- `selectedPatients: Set<string>` - Set of selected patient IDs
+- `testAssignments: Map<string, Set<TestType>>` - Map of patient IDs to their selected test types
+- `onPatientSelect: (patientId: string, selected: boolean) => void` - Callback when a patient is selected or deselected
+- `onTestAssignmentChange: (patientId: string, tests: Set<TestType>) => void` - Callback when test assignments change for a patient
+
+**Usage:**
+```tsx
+import { PatientAssignmentTable } from '@/components/patients/PatientAssignmentTable'
+import { useState } from 'react'
+import { Patient, TestType } from '@/types'
+
+function MyComponent() {
+  const [patients, setPatients] = useState<Patient[]>([])
+  const [selectedPatients, setSelectedPatients] = useState<Set<string>>(new Set())
+  const [testAssignments, setTestAssignments] = useState<Map<string, Set<TestType>>>(new Map())
+  
+  const handlePatientSelect = (patientId: string, selected: boolean) => {
+    const newSelected = new Set(selectedPatients)
+    if (selected) {
+      newSelected.add(patientId)
+    } else {
+      newSelected.delete(patientId)
+    }
+    setSelectedPatients(newSelected)
+  }
+  
+  const handleTestAssignmentChange = (patientId: string, tests: Set<TestType>) => {
+    const newAssignments = new Map(testAssignments)
+    newAssignments.set(patientId, tests)
+    setTestAssignments(newAssignments)
+  }
+  
+  return (
+    <PatientAssignmentTable
+      patients={patients}
+      selectedPatients={selectedPatients}
+      testAssignments={testAssignments}
+      onPatientSelect={handlePatientSelect}
+      onTestAssignmentChange={handleTestAssignmentChange}
+    />
+  )
+}
+```
+
 ## Future Enhancements
 
 - API integration for saving patient data (Task 6.1)

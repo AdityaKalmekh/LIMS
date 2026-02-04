@@ -67,6 +67,93 @@ export interface PatientDbRecord {
 }
 
 // ============================================================================
+// Test Assignment Types
+// ============================================================================
+
+/**
+ * Lab test type options
+ */
+export type TestType = 'CBC' | 'BG' | 'VDRL'
+
+/**
+ * Test assignment status options
+ */
+export type TestAssignmentStatus = 'pending' | 'in_progress' | 'completed' | 'cancelled'
+
+/**
+ * Test assignment (camelCase for application use)
+ */
+export interface TestAssignment {
+  id: string
+  patientId: string
+  testType: TestType
+  status: TestAssignmentStatus
+  assignedAt: string
+  assignedBy: string
+  completedAt?: string
+  notes?: string
+  createdAt: string
+  updatedAt?: string
+}
+
+/**
+ * Test assignment database record (snake_case as stored in Supabase)
+ */
+export interface TestAssignmentDbRecord {
+  id: string
+  patient_id: string
+  test_type: string
+  status: string
+  assigned_at: string
+  assigned_by: string
+  completed_at?: string
+  notes?: string
+  created_at: string
+  updated_at?: string
+}
+
+/**
+ * Form data for creating test assignments
+ */
+export interface TestAssignmentFormData {
+  patientId: string
+  tests: TestType[]
+}
+
+/**
+ * Request body for creating test assignments
+ */
+export interface CreateTestAssignmentsRequest {
+  assignments: TestAssignmentFormData[]
+}
+
+/**
+ * Response data for successful test assignment creation
+ */
+export interface CreateTestAssignmentsData {
+  created: number
+  assignments: TestAssignment[]
+}
+
+/**
+ * API response for creating test assignments
+ */
+export type CreateTestAssignmentsResponse = ApiResponse<CreateTestAssignmentsData>
+
+/**
+ * Query parameters for fetching unassigned patients
+ */
+export interface UnassignedPatientsQuery {
+  page?: number
+  limit?: number
+}
+
+/**
+ * API response for fetching unassigned patients
+ */
+export type UnassignedPatientsResponse = PaginatedResponse<Patient>
+
+// ============================================================================
 // Form Types
 // ============================================================================
 
@@ -125,14 +212,18 @@ export interface SignupFormData {
 // ============================================================================
 
 /**
- * Generic API response wrapper
+ * Generic API success response
  */
-export interface ApiResponse<T = unknown> {
-  success: boolean
+export interface ApiSuccessResponse<T = unknown> {
+  success: true
   data?: T
-  error?: string
   message?: string
 }
+
+/**
+ * Generic API response wrapper (can be success or error)
+ */
+export type ApiResponse<T = unknown> = ApiSuccessResponse<T> | ApiErrorResponse
 
 /**
  * API error response with validation errors
@@ -165,18 +256,23 @@ export interface PaginationMeta {
 }
 
 /**
- * Paginated API response
+ * Paginated API response (success case)
  */
-export interface PaginatedResponse<T> {
+export interface PaginatedResponseSuccess<T> {
   success: true
   data: T[]
   pagination: PaginationMeta
 }
 
 /**
+ * Paginated API response (can be success or error)
+ */
+export type PaginatedResponse<T> = PaginatedResponseSuccess<T> | ApiErrorResponse
+
+/**
  * Patient list API response
  */
-export interface PatientListResponse extends PaginatedResponse<Patient> {}
+export interface PatientListResponse extends PaginatedResponseSuccess<Patient> {}
 
 // ============================================================================
 // Supabase Database Types
