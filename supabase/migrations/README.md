@@ -10,6 +10,20 @@ This directory contains SQL migration files for the LIMS application database.
 | `001_create_patients_table_rollback.sql` | Rolls back the patients table creation | 2.2 (rollback) |
 | `002_setup_rls_policies.sql` | Enables RLS and creates security policies | 2.3 |
 | `002_setup_rls_policies_rollback.sql` | Removes RLS policies and disables RLS | 2.3 (rollback) |
+| `003_create_test_assignments_table.sql` | Creates the test_assignments table | - |
+| `003_create_test_assignments_table_rollback.sql` | Rolls back the test_assignments table creation | - |
+| `004_setup_test_assignments_rls.sql` | Enables RLS for test_assignments table | - |
+| `004_setup_test_assignments_rls_rollback.sql` | Removes RLS policies for test_assignments | - |
+| `005_create_report_types_table.sql` | Creates the report_types table | 1.1 |
+| `005_create_report_types_table_rollback.sql` | Rolls back the report_types table creation | 1.1 (rollback) |
+| `006_create_report_fields_table.sql` | Creates the report_fields table | 1.2 |
+| `006_create_report_fields_table_rollback.sql` | Rolls back the report_fields table creation | 1.2 (rollback) |
+| `007_create_report_instances_table.sql` | Creates the report_instances table | 1.3 |
+| `007_create_report_instances_table_rollback.sql` | Rolls back the report_instances table creation | 1.3 (rollback) |
+| `008_create_report_values_table.sql` | Creates the report_values table | 1.4 |
+| `008_create_report_values_table_rollback.sql` | Rolls back the report_values table creation | 1.4 (rollback) |
+| `009_seed_report_types_data.sql` | Seeds Blood Group and CBC report types with fields | 1.5 |
+| `009_seed_report_types_data_rollback.sql` | Removes Blood Group and CBC report types | 1.5 (rollback) |
 
 ## Naming Convention
 
@@ -52,7 +66,14 @@ Migrations should be run in numerical order:
 
 1. `001_create_patients_table.sql` - Creates patients table
 2. `002_setup_rls_policies.sql` - Enables RLS and creates security policies
-3. (Future migrations will be added here)
+3. `003_create_test_assignments_table.sql` - Creates test_assignments table
+4. `004_setup_test_assignments_rls.sql` - Enables RLS for test_assignments table
+5. `005_create_report_types_table.sql` - Creates report_types table
+6. `006_create_report_fields_table.sql` - Creates report_fields table
+7. `007_create_report_instances_table.sql` - Creates report_instances table
+8. `008_create_report_values_table.sql` - Creates report_values table
+9. `009_seed_report_types_data.sql` - Seeds Blood Group and CBC report types with field definitions
+10. (Future migrations will be added here)
 
 ## Rollback Migrations
 

@@ -70,7 +70,7 @@ const navigation: NavItem[] = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   // { name: 'Patients', href: '/dashboard/patients', icon: Users },
   { name: 'Patients', href: '/patient-route', icon: Users },
-  { name: 'Reports', href: '/dashboard/reports', icon: FileText },
+  { name: 'Reports', href: '/reports', icon: FileText },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
 ]
 

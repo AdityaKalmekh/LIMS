@@ -7,9 +7,40 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Badge } from "@/components/ui/badge"
+import { TestAssignmentList } from "@/components/reports/TestAssignmentList"
+import { TestAssignmentWithStatus } from "@/types/reports"
 import { toast } from "sonner"
+import { useState } from "react"
 
 export default function ComponentTestPage() {
+  const [selectedTestId, setSelectedTestId] = useState<string | null>(null)
+
+  // Sample test assignments for testing
+  const sampleTestAssignments: TestAssignmentWithStatus[] = [
+    {
+      id: "1",
+      testName: "Blood Group Test",
+      assignedDate: new Date().toISOString(),
+      reportStatus: "pending",
+      reportTypeCode: "BLOOD_GROUP"
+    },
+    {
+      id: "2",
+      testName: "Complete Blood Count (CBC)",
+      assignedDate: new Date(Date.now() - 86400000).toISOString(), // Yesterday
+      reportStatus: "in-progress",
+      reportTypeCode: "CBC"
+    },
+    {
+      id: "3",
+      testName: "Lipid Profile",
+      assignedDate: new Date(Date.now() - 86400000 * 3).toISOString(), // 3 days ago
+      reportStatus: "completed",
+      reportTypeCode: "LIPID_PROFILE"
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto py-12">
@@ -180,6 +211,46 @@ export default function ComponentTestPage() {
                   Warning Toast
                 </Button>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Badge Component */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Badge Component</CardTitle>
+              <CardDescription>Status badges with different variants</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="default">Default</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="destructive">Destructive</Badge>
+                <Badge variant="outline">Outline</Badge>
+                <Badge variant="success">Success</Badge>
+                <Badge variant="warning">Warning</Badge>
+                <Badge variant="info">Info</Badge>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Test Assignment List */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Test Assignment List</CardTitle>
+              <CardDescription>
+                List of test assignments with status indicators
+                {selectedTestId && ` - Selected: ${selectedTestId}`}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TestAssignmentList
+                testAssignments={sampleTestAssignments}
+                selectedTestId={selectedTestId}
+                onTestSelect={(id) => {
+                  setSelectedTestId(id)
+                  toast.info(`Selected test: ${sampleTestAssignments.find(t => t.id === id)?.testName}`)
+                }}
+              />
             </CardContent>
           </Card>
 

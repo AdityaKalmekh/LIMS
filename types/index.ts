@@ -6,12 +6,14 @@
  * 
  * Organization:
  * 1. Patient Types - Core patient data structures and related types
- * 2. Form Types - Form-related interfaces for validation and state management
- * 3. API Response Types - Standardized API response structures
- * 4. Supabase Database Types - Database schema types and query responses
- * 5. User Types - User and authentication related types
- * 6. UI Component Types - Props and state types for UI components
- * 7. Utility Types - Generic utility types for type transformations
+ * 2. Test Assignment Types - Test assignment data structures
+ * 3. Report Types - Report management system types (re-exported from reports.ts)
+ * 4. Form Types - Form-related interfaces for validation and state management
+ * 5. API Response Types - Standardized API response structures
+ * 6. Supabase Database Types - Database schema types and query responses
+ * 7. User Types - User and authentication related types
+ * 8. UI Component Types - Props and state types for UI components
+ * 9. Utility Types - Generic utility types for type transformations
  * 
  * Usage:
  * Import types from this file in your components, pages, and utilities:
@@ -152,6 +154,13 @@ export interface UnassignedPatientsQuery {
  * API response for fetching unassigned patients
  */
 export type UnassignedPatientsResponse = PaginatedResponse<Patient>
+
+// ============================================================================
+// Report Types
+// ============================================================================
+
+// Re-export all report types from the reports module
+export * from './reports'
 
 // ============================================================================
 // Form Types
